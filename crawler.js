@@ -26,11 +26,11 @@ export class Crawler {
 
   async searchOnSkroutz(searchTerm) {
       const p = this.page;
-      await p.type("//input[#search-bar-input]", searchTerm);
+      await p.type("//input[@id='search-bar-input']", searchTerm);
       await p.click('[type="submit"]');
-      await p.click('//div[#order-options]/ul/li/a');
+      await p.click('//div[@id="order-options"]/ul/li/a');
       await p.waitForTimeout(50);
-      await p.click('//div[#order-options](/ul/li/a)[1]');
+      await p.click('//div[@id="order-options"](/ul/li/a)[1]');
       await p.waitForTimeout(1000);
       const firstEl = await p.$x('//div[@class="card-content"]/h2/a');
       let firstUrl = await p.evaluate((el) => el.getAttribute("href"), firstEl[0]);
